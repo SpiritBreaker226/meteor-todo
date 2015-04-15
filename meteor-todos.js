@@ -87,6 +87,7 @@ Meteor.methods({
 
     Tasks.insert({
       text: text,
+      private: true, // sets the private
       createdAt: new Date(), // current time
       owner: Meteor.userId(), // _id of logged in user
       username: Meteor.user().username // username of logged in user
