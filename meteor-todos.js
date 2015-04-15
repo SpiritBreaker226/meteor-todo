@@ -2,6 +2,8 @@
 Tasks = new Mongo.Collection("tasks");
 
 if (Meteor.isClient) {
+  Meteor.subscribe("tasks");
+
   // This code only runs on the client
   Template.body.helpers({
     tasks: function() {
@@ -52,6 +54,12 @@ if (Meteor.isClient) {
 
   Accounts.ui.config({
     passwordSignupFields: "USERNAME_ONLY"
+  });
+}
+
+if (Meteor.isServer) {
+  Meteor.publish("tasks", function(){
+    return Tasks.find();
   });
 }
 
